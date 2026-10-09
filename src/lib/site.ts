@@ -3,7 +3,7 @@ export const release = {
   version: "1.0.0",
   dmg: "/downloads/MirrorMe-1.0.0.dmg",
   size: "1 MB",
-  sha256: "748f009460ec94149df512a1675cfdeffad3f228603d714bced3162cfe9ad258",
+  sha256: "773b360305ce8329c335b43bfdf468573c7348d53a0140a491b7a3b638a35db9",
   minOS: "macOS 14",
 };
 
