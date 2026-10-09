@@ -1,10 +1,11 @@
-import { AppleLogo, ArrowsOutCardinal, GithubLogo, TerminalWindow } from "@phosphor-icons/react/dist/ssr";
+import { AppleLogo, ArrowsOutCardinal, TerminalWindow } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { HeroDemo } from "@/components/HeroDemo";
 import { LiquidGlass } from "@/components/LiquidGlass";
 import { Reveal } from "@/components/Reveal";
 import { DownloadGradient, LiquidMark } from "@/components/Visuals";
-import { links, release } from "@/lib/site";
+import { CopyCommand } from "@/components/CopyCommand";
+import { quarantineCommand, release } from "@/lib/site";
 
 /** The one download action on the page; every "Download" button uses this. */
 function DownloadButton({ className = "" }: { className?: string }) {
@@ -34,9 +35,6 @@ function Nav() {
           <a href="#install" className="press hidden rounded-full px-3 py-2 hover:text-white sm:block">
             Install
           </a>
-          <a href={links.repo} className="press rounded-full p-2 hover:text-white" aria-label="MirrorMe on GitHub">
-            <GithubLogo size={20} />
-          </a>
           <a
             href={release.dmg}
             className="press btn-primary ml-1 hidden items-center gap-1.5 whitespace-nowrap rounded-full px-4 py-2 font-semibold sm:inline-flex"
@@ -64,15 +62,8 @@ function Hero() {
             MirrorMe lets iOS Simulators and Android emulators see whatever sits beneath their window. Drag it over a
             QR code.
           </p>
-          <div className="mt-9 flex flex-wrap items-center gap-3">
+          <div className="mt-9">
             <DownloadButton />
-            <a
-              href={links.repo}
-              className="press btn-ghost inline-flex items-center gap-2 rounded-full px-5 py-3 text-[15px] font-medium"
-            >
-              <GithubLogo size={18} />
-              View on GitHub
-            </a>
           </div>
         </Reveal>
         <Reveal delay={0.08}>
@@ -158,54 +149,47 @@ mirrorme android launch Pixel_8`}
   );
 }
 
-const steps = [
-  {
-    title: "Download the DMG",
-    body: "One small disk image, straight from this page.",
-  },
-  {
-    title: "Drag it into Applications",
-    body: "MirrorMe is not notarized yet. If macOS blocks the first launch, choose Open Anyway in Privacy & Security.",
-  },
-  {
-    title: "Turn it on",
-    body: "Click the menu bar icon, flip the switch and allow Screen Recording. Then relaunch the app you are testing.",
-  },
-];
-
 function Install() {
   return (
-    <section id="install" className="scroll-mt-24 mx-auto max-w-7xl px-4 py-24 sm:px-6">
-      <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_1fr] lg:gap-20">
+    <section id="install" className="scroll-mt-24 mx-auto max-w-3xl px-4 py-24 sm:px-6">
+      <Reveal>
+        <h2 className="text-3xl font-semibold tracking-tighter md:text-5xl">Installed in a minute.</h2>
+      </Reveal>
+      <ol className="mt-12 grid gap-10">
         <Reveal>
-          <div className="panel p-2">
-            <Image
-              src="/shots/installer.jpg"
-              alt="The MirrorMe installer window: drag MirrorMe onto Applications"
-              width={1100}
-              height={735}
-              className="h-auto w-full rounded-[18px]"
-            />
-          </div>
+          <Step n={1} title="Download and drag into Applications">
+            Open the disk image and drag MirrorMe onto the Applications folder.
+          </Step>
         </Reveal>
-        <Reveal delay={0.06}>
-          <h2 className="text-3xl font-semibold tracking-tighter md:text-5xl">Installed in a minute.</h2>
-          <ol className="mt-10 grid gap-8">
-            {steps.map((step, i) => (
-              <li key={step.title} className="grid grid-cols-[2.25rem_1fr] gap-4">
-                <span className="flex size-9 items-center justify-center rounded-full bg-white/5 font-mono text-sm text-[var(--accent)] shadow-[inset_0_0_0_1px_var(--line)]">
-                  {i + 1}
-                </span>
-                <div>
-                  <h3 className="font-semibold tracking-tight">{step.title}</h3>
-                  <p className="mt-1.5 max-w-[48ch] leading-relaxed text-[var(--muted)]">{step.body}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
+        <Reveal delay={0.05}>
+          <Step n={2} title="Run this once in Terminal">
+            MirrorMe isn&apos;t notarized by Apple, so macOS holds it back the first time. This lets it open.
+            <div className="mt-4">
+              <CopyCommand command={quarantineCommand} />
+            </div>
+          </Step>
         </Reveal>
-      </div>
+        <Reveal delay={0.1}>
+          <Step n={3} title="Turn it on">
+            Click the menu bar icon, flip the switch and allow Screen Recording. Then relaunch the app you are testing.
+          </Step>
+        </Reveal>
+      </ol>
     </section>
+  );
+}
+
+function Step({ n, title, children }: { n: number; title: string; children: React.ReactNode }) {
+  return (
+    <li className="grid grid-cols-[2.25rem_1fr] gap-4">
+      <span className="flex size-9 items-center justify-center rounded-full bg-white/5 font-mono text-sm text-[var(--accent)] shadow-[inset_0_0_0_1px_var(--line)]">
+        {n}
+      </span>
+      <div className="min-w-0">
+        <h3 className="font-semibold tracking-tight">{title}</h3>
+        <div className="mt-1.5 leading-relaxed text-[var(--muted)]">{children}</div>
+      </div>
+    </li>
   );
 }
 
@@ -258,14 +242,9 @@ function Footer() {
         <Image src="/app-icon.png" alt="" width={22} height={22} />
         <span>MirrorMe for macOS</span>
       </div>
-      <div className="flex items-center gap-6">
-        <a href={links.releases} className="hover:text-white">
-          Releases
-        </a>
-        <a href={links.repo} className="hover:text-white">
-          View on GitHub
-        </a>
-      </div>
+      <a href="#top" className="hover:text-white">
+        Back to top
+      </a>
     </footer>
   );
 }

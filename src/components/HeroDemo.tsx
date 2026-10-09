@@ -39,7 +39,7 @@ export function HeroDemo() {
               className="glass-pill flex items-center gap-2 px-4 py-2 text-sm text-white/90"
             >
               <QrCode size={16} weight="bold" className="text-[var(--accent)]" />
-              QR code read: github.com/hexhad/mirror-me
+              QR code read: Hello from your desktop
             </motion.div>
           )}
         </AnimatePresence>

@@ -76,7 +76,7 @@ function useDeskTexture() {
       roundRect(ctx, cx - size / 2 - pad, cy - size / 2 - pad, size + pad * 2, size + pad * 2, pad * 1.4);
       ctx.fill();
       const qr = document.createElement("canvas");
-      await QRCode.toCanvas(qr, "https://github.com/hexhad/mirror-me", {
+      await QRCode.toCanvas(qr, "Hello from your desktop", {
         margin: 0,
         width: Math.round(size),
         color: { dark: "#15171c", light: "#f7f8f9" },
