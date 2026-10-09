@@ -1,26 +1,195 @@
 @import "tailwindcss";
 
+/*
+ * One theme (dark, like the app icon), one accent (mint), one radius scale:
+ * pills for anything pressable, 24px for panels and media.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #0b0c0f;
+  --bg-raised: #121419;
+  --fg: #eef0f2;
+  --muted: #9aa1ab;
+  --line: rgb(255 255 255 / 0.08);
+  --accent: #34d399;
+  --accent-ink: #062016;
+  --radius-panel: 24px;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
+  --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--bg);
+  color-scheme: dark;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+/* Film grain on a fixed layer, so it never repaints while scrolling. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background: rgb(52 211 153 / 0.3);
+}
+
+/* Anything pressable gives way a touch under the finger. */
+.press {
+  transition: transform 160ms var(--ease-out), background-color 160ms var(--ease-out), color 160ms var(--ease-out);
+}
+.press:active {
+  transform: scale(0.97);
+  transition-duration: 100ms;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.btn-ghost {
+  background: rgb(255 255 255 / 0.05);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+@media (hover: hover) {
+  .btn-primary:hover {
+    background: #5ee0b0;
+  }
+  .btn-ghost:hover {
+    background: rgb(255 255 255 / 0.1);
+  }
+}
+
+/* ---------- Glass (web approximation of liquid glass, after liquid-glass-js) ---------- */
+
+.liquid-glass {
+  position: relative;
+  background: rgb(255 255 255 / 0.06);
+  -webkit-backdrop-filter: blur(16px) saturate(1.6);
+  backdrop-filter: blur(16px) saturate(1.6);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.22),
+    inset 0 -1px 0 rgb(255 255 255 / 0.06),
+    inset 0 0 0 1px rgb(255 255 255 / 0.08),
+    0 12px 40px rgb(0 0 0 / 0.35);
+}
+
+.glass-pill {
+  border-radius: 999px;
+  background: rgb(14 16 20 / 0.62);
+  -webkit-backdrop-filter: blur(14px) saturate(1.5);
+  backdrop-filter: blur(14px) saturate(1.5);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.16),
+    inset 0 0 0 1px rgb(255 255 255 / 0.08),
+    0 10px 30px rgb(0 0 0 / 0.35);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .liquid-glass,
+  .glass-pill {
+    background: var(--bg-raised);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* ---------- Hero ---------- */
+
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 50% at 75% 35%, rgb(52 211 153 / 0.13), transparent 70%),
+    radial-gradient(40% 40% at 10% 0%, rgb(255 255 255 / 0.04), transparent 70%);
+}
+
+.demo {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  max-height: min(78dvh, 720px);
+  border-radius: var(--radius-panel);
+  overflow: hidden;
+  background: #15181d;
+  box-shadow:
+    inset 0 0 0 1px var(--line),
+    0 30px 80px rgb(0 0 0 / 0.45);
+  /* Vertical swipes still scroll the page on touch screens. */
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.demo-skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, #15181d 30%, #1c2027 50%, #15181d 70%);
+  background-size: 200% 100%;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .demo-skeleton {
+    animation: shimmer 1.6s linear infinite;
+  }
+}
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* ---------- Media ---------- */
+
+.panel {
+  border-radius: var(--radius-panel);
+  background: var(--bg-raised);
+  box-shadow: inset 0 0 0 1px var(--line);
+  overflow: hidden;
+}
+
+/* Tall phone screenshots shown from the top, fading out at the bottom edge. */
+.shot-fade {
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent);
+  mask-image: linear-gradient(to bottom, black 70%, transparent);
+}
+
+/* ---------- Download section backdrop (shadergradient) ---------- */
+
+.shader-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.shader-backdrop-fallback {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(70% 80% at 20% 30%, rgb(31 157 114 / 0.45), transparent 70%),
+    radial-gradient(60% 70% at 85% 80%, rgb(29 58 54 / 0.8), transparent 70%),
+    var(--bg);
+}
+.shader-backdrop-wash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgb(11 12 15 / 0.15), rgb(11 12 15 / 0.65));
 }

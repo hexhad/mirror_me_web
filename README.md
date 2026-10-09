@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# mirror_me_web
 
-## Getting Started
+The download site for [MirrorMe](https://github.com/hexhad/mirror-me): a camera for iOS Simulators and Android emulators that sees the part of your Mac desktop under the device window.
 
-First, run the development server:
+Next.js (App Router) + Tailwind CSS, with:
+
+- a draggable phone over a desktop whose screen is a true see-through window (`src/components/PeepholeScene.tsx`, React Three Fiber). Park it on the QR card and the "camera" reads it.
+- the MirrorMe mark in liquid metal ([paper-design/shaders](https://github.com/paper-design/shaders), as in liquid-logo)
+- a shader gradient behind the download section ([shadergradient](https://github.com/ruucm/shadergradient))
+- a liquid glass nav (`src/components/LiquidGlass.tsx`, after [liquid-glass-js](https://github.com/dashersw/liquid-glass-js))
+
+## Develop
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Downloads
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The download buttons point at `https://github.com/hexhad/mirror-me/releases/latest/download/MirrorMe.dmg`, so every
+release of the app should upload an unversioned `MirrorMe.dmg` asset (alongside `MirrorMe-X.Y.Z.dmg`).
+After a release, update `release` in `src/lib/site.ts` (version, size, SHA-256).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploy
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Import the repo in Vercel. The defaults work: framework Next.js, build `next build`, no environment variables.
