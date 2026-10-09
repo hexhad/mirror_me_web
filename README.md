@@ -16,11 +16,11 @@ npm install
 npm run dev
 ```
 
-## Downloads
+## Ship a new app version
 
-The download buttons point at `https://github.com/hexhad/mirror-me/releases/latest/download/MirrorMe.dmg`, so every
-release of the app should upload an unversioned `MirrorMe.dmg` asset (alongside `MirrorMe-X.Y.Z.dmg`).
-After a release, update `release` in `src/lib/site.ts` (version, size, SHA-256).
+1. Build the DMG in the app repo: `scripts/build-app.sh` (writes `build/MirrorMe-X.Y.Z.dmg`).
+2. Copy it into `public/downloads/` and delete the old one.
+3. Update `release` in `src/lib/site.ts` (version, file, size, SHA-256 from `shasum -a 256`).
 
 ## Deploy
 

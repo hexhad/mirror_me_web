@@ -161,7 +161,7 @@ mirrorme android launch Pixel_8`}
 const steps = [
   {
     title: "Download the DMG",
-    body: "One small disk image from the latest GitHub release.",
+    body: "One small disk image, straight from this page.",
   },
   {
     title: "Drag it into Applications",
