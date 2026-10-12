@@ -26,3 +26,11 @@ npm run dev
 ## Deploy
 
 Import the repo in Vercel. The defaults work: framework Next.js, build `next build`, no environment variables.
+
+---
+
+<p align="center">
+  <a href="https://hexhad.github.io"><img src=".github/hexhad.svg" width="40" height="40" alt="HEXHAD"></a>
+  <br>
+  <sub>Built by <a href="https://hexhad.github.io"><b>HEXHAD</b></a> · Made in Sri Lanka</sub>
+</p>

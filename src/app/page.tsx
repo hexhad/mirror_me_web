@@ -5,6 +5,7 @@ import { LiquidGlass } from "@/components/LiquidGlass";
 import { Reveal } from "@/components/Reveal";
 import { DownloadGradient, LiquidMark } from "@/components/Visuals";
 import { CopyCommand } from "@/components/CopyCommand";
+import { MadeByHexhad } from "@/components/Hexhad";
 import { quarantineCommand, release } from "@/lib/site";
 
 /** The one download action on the page; every "Download" button uses this. */
@@ -241,10 +242,14 @@ function Footer() {
       <div className="flex items-center gap-2.5">
         <Image src="/app-icon.png" alt="" width={22} height={22} />
         <span>MirrorMe for macOS</span>
+        <MadeByHexhad />
       </div>
-      <a href="#top" className="hover:text-white">
-        Back to top
-      </a>
+      <div className="flex items-center gap-6">
+        <span>© {new Date().getFullYear()} HEXHAD</span>
+        <a href="#top" className="hover:text-white">
+          Back to top
+        </a>
+      </div>
     </footer>
   );
 }

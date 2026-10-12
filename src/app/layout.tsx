@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   title: "MirrorMe: a camera for iOS Simulators and Android emulators",
   description:
     "MirrorMe gives iOS Simulators and Android emulators a working camera that sees the part of your Mac desktop under the device window.",
+  authors: [{ name: "HEXHAD", url: "https://hexhad.github.io" }],
+  creator: "HEXHAD",
+  publisher: "HEXHAD",
   openGraph: {
     title: "MirrorMe",
     description: "A camera for your simulators, aimed at your desktop.",
