@@ -1,9 +1,9 @@
 /** The macOS app. The installer is served from this site (public/downloads). */
 export const release = {
-  version: "1.0.0",
-  dmg: "/downloads/MirrorMe-1.0.0.dmg",
+  version: "1.0.1",
+  dmg: "/downloads/MirrorMe-1.0.1.dmg",
   size: "1 MB",
-  sha256: "a8aaf170b97bac1fb46771307cac35f6bde2378289a90ab0c2771af461d59566",
+  sha256: "0fa7cdf0266aa95b6d08ae37a9c5201a0b4a604a640ef3f4381f01a01ba7fc9e",
   minOS: "macOS 14",
 };
 
