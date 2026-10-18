@@ -2,6 +2,8 @@
 
 The download site for MirrorMe: a camera for iOS Simulators and Android emulators that sees the part of your Mac desktop under the device window.
 
+Live at **[mirror-me-web.vercel.app](https://mirror-me-web.vercel.app)**, currently serving **MirrorMe 1.0.2**. App source: [hexhad/mirror-me](https://github.com/hexhad/mirror-me).
+
 Next.js (App Router) + Tailwind CSS, with:
 
 - a draggable phone over a desktop whose screen is a true see-through window (`src/components/PeepholeScene.tsx`, React Three Fiber). Park it on the QR card and the "camera" reads it.
@@ -21,7 +23,8 @@ npm run dev
 
 1. Build the DMG in the app repo: `scripts/build-app.sh` (writes `build/MirrorMe-X.Y.Z.dmg`).
 2. Copy it into `public/downloads/` and delete the old one.
-3. Update `release` in `src/lib/site.ts` (version, file, size, SHA-256 from `shasum -a 256`).
+3. Update `release` in `src/lib/site.ts` (version, file, size, SHA-256 from `shasum -a 256`, and a one-line `notes` on what changed).
+4. Update the version in the line at the top of this README.
 
 ## Deploy
 
