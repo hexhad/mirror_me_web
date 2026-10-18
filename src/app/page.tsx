@@ -125,7 +125,7 @@ function Platforms() {
         <Reveal className="panel bg-[linear-gradient(140deg,rgb(52_211_153/0.16),transparent_60%)] p-7 md:col-span-2">
           <ArrowsOutCardinal size={26} className="text-[var(--accent)]" />
           <h3 className="mt-5 text-lg font-semibold tracking-tight">It follows the window</h3>
-          <p className="mt-2 text-[var(--muted)]">Move a simulator across your screen and its camera sees what is underneath, live.</p>
+          <p className="mt-2 text-[var(--muted)]">Drag a simulator across your screen and its camera keeps up, showing what is underneath, live.</p>
         </Reveal>
 
         <Reveal delay={0.05} className="panel flex items-center gap-5 p-7 md:col-span-2">
@@ -229,6 +229,9 @@ function Download() {
                 <dd className="mt-0.5 break-all font-mono text-xs text-white/70">{release.sha256}</dd>
               </div>
             </dl>
+            <p className="mt-6 max-w-[52ch] text-sm leading-relaxed text-white/70">
+              <span className="font-medium text-white/90">New in {release.version}.</span> {release.notes}
+            </p>
           </div>
         </div>
       </div>
