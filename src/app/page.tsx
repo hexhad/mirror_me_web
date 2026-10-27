@@ -61,7 +61,7 @@ function Hero() {
           </h1>
           <p className="mt-6 max-w-[46ch] text-lg leading-relaxed text-[var(--muted)]">
             MirrorMe lets iOS Simulators and Android emulators see whatever sits beneath their window. Drag it over a
-            QR code.
+            QR code, or hand a camera an image or a video.
           </p>
           <div className="mt-9">
             <DownloadButton />
@@ -132,7 +132,7 @@ function Platforms() {
           <Image src="/app-icon.png" alt="" width={72} height={72} className="shrink-0" />
           <div>
             <h3 className="text-lg font-semibold tracking-tight">Lives in the menu bar</h3>
-            <p className="mt-2 text-[var(--muted)]">Turn every device camera on or off with one switch.</p>
+            <p className="mt-2 text-[var(--muted)]">One switch for every camera. Drop an image or video on any of them.</p>
           </div>
         </Reveal>
 
@@ -140,9 +140,9 @@ function Platforms() {
           <TerminalWindow size={26} className="text-[var(--accent)]" />
           <h3 className="mt-5 text-lg font-semibold tracking-tight">Scriptable</h3>
           <pre className="mt-3 overflow-x-auto rounded-xl bg-black/30 p-3 font-mono text-[13px] leading-relaxed text-white/80">
-            {`mirrorme app enable
-mirrorme ios launch com.you.app
-mirrorme android launch Pixel_8`}
+            {`mirrorme source set image qr.png --device booted
+mirrorme android launch Pixel_8
+mirrorme mcp   # for AI agents`}
           </pre>
         </Reveal>
       </div>

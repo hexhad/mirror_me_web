@@ -2,7 +2,7 @@
 
 The download site for MirrorMe: a camera for iOS Simulators and Android emulators that sees the part of your Mac desktop under the device window.
 
-Live at **[mirror-me-web.vercel.app](https://mirror-me-web.vercel.app)**, currently serving **MirrorMe 1.0.2**. App source: [hexhad/mirror-me](https://github.com/hexhad/mirror-me).
+Live at **[mirror-me-web.vercel.app](https://mirror-me-web.vercel.app)**, currently serving **MirrorMe 1.1.0**. App source: [hexhad/mirror-me](https://github.com/hexhad/mirror-me).
 
 Next.js (App Router) + Tailwind CSS, with:
 

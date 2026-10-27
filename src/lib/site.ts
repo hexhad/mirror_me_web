@@ -1,13 +1,13 @@
 /** The macOS app. The installer is served from this site (public/downloads). */
 export const release = {
-  version: "1.0.2",
-  dmg: "/downloads/MirrorMe-1.0.2.dmg",
-  size: "1 MB",
-  sha256: "f0c8b15c5eeef2a1ef75cd87112909134c51f5832ad1c9f648496987bd6b11ca",
+  version: "1.1.0",
+  dmg: "/downloads/MirrorMe-1.1.0.dmg",
+  size: "2 MB",
+  sha256: "dd3c06dd775c1ad303be4f4dfddccceed5f2b4bd7be6c6e46b363a1db6d550ed",
   minOS: "macOS 14",
   /** One line on what changed in this version, shown next to the download. */
   notes:
-    "Faster all round. The menu opens instantly, the camera keeps up with a dragged window, and a camera looking at a still screen uses almost no CPU.",
+    "Show an image, a video or a slideshow on any camera, for every device or just one, with an optional overlay. A new Liquid Glass menu, a media library, and an MCP server for AI agents.",
 };
 
 /** Clears the "downloaded from the internet" flag so macOS lets MirrorMe open. */
